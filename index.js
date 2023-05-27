@@ -17,7 +17,7 @@ const app = new express()
 //app.use(express.static(path.join(__dirname,'/build'))); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('build'))
+app.use('/',express.static('build'))
 
 
 /*let transporter = nodemailer.createTransport({
@@ -77,9 +77,9 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
 
-app.get('/',(request,response)=>{
+/*app.get('/',(request,response)=>{
     response.send("<h1>Bloodbank Api home</h1>")
-})
+})*/
 
 app.get('/api/users', async (req,res)=>{
     let result = await userData.find()
