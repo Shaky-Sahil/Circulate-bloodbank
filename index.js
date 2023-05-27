@@ -9,15 +9,15 @@ const loginRouter = require('./controllers/login')
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken')
-//const path = require('path');
+const path = require('path');
 
-const root = require('path').join(__dirname,'/build')
 
 const app = new express()
 
 app.use(express.static(root)); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname,'/build'))); 
 
 
 
@@ -185,11 +185,13 @@ app.post('/api/test/mail',(req,res)=>{
   res.send("success")
 })
 
+//app.get('/*', function(req, res) {
+ //res.sendFile(path.join(__dirname,'/build/index.html')); }); 
+  //res.sendFile('index.html', { root });
+//})
+
 app.get('/*', function(req, res) {
-//  res.sendFile(path.join(__dirname
-  //,'/build/index.html')); }); 
-  res.sendFile('index.html', { root });
-})
+  res.sendFile(path.join(__dirname,'/build/index.html')); });
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
