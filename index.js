@@ -14,7 +14,6 @@ const path = require('path');
 
 const app = new express()
 
-app.use(express.static(root)); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname,'/build'))); 
